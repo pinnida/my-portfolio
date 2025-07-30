@@ -15,12 +15,13 @@ import {
   faTools,
   faCalendar,
   faCalendarWeek,
-  faCalendarPlus
+  faCalendarPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faGithub,
   faLinkedin,
   faLine,
+  faAngular,
 } from "@fortawesome/free-brands-svg-icons";
 import Image from "next/image";
 
@@ -403,7 +404,7 @@ export default function Home() {
           >
             {/* Timeline Line */}
             <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-400 via-blue-400 to-pink-400"></div>
-            
+
             <div className="space-y-8">
               {[
                 {
@@ -456,18 +457,18 @@ export default function Home() {
                   <div className="relative z-10 flex-shrink-0">
                     <motion.div
                       className={`w-4 h-4 rounded-full border-2 ${
-                        job.permanant 
-                          ? 'bg-green-400 border-green-400' 
-                          : 'bg-orange-400 border-orange-400'
+                        job.permanant
+                          ? "bg-green-400 border-green-400"
+                          : "bg-orange-400 border-orange-400"
                       } shadow-lg`}
                       whileHover={{ scale: 1.5 }}
                       transition={{ type: "spring", stiffness: 300 }}
                     ></motion.div>
                   </div>
-                  
+
                   {/* Timeline Connector */}
                   <div className="w-8 h-0.5 bg-gradient-to-r from-purple-400 to-transparent mt-2 flex-shrink-0"></div>
-                  
+
                   {/* Job Card */}
                   <motion.div
                     className="glass-card p-6 flex-1 ml-2"
@@ -477,18 +478,20 @@ export default function Home() {
                       <h3 className="text-2xl font-bold gradient-text">
                         {job.title}
                       </h3>
-                      <span className={`px-2 py-1 rounded-full text-xs font-semibold ${
-                        job.permanant 
-                          ? 'bg-green-400/20 text-green-300' 
-                          : 'bg-orange-400/20 text-orange-300'
-                      }`}>
-                        {job.permanant ? 'Permanent' : 'Contract'}
+                      <span
+                        className={`px-2 py-1 rounded-full text-xs font-semibold ${
+                          job.permanant
+                            ? "bg-green-400/20 text-green-300"
+                            : "bg-orange-400/20 text-orange-300"
+                        }`}
+                      >
+                        {job.permanant ? "Permanent" : "Contract"}
                       </span>
                     </div>
                     <h4 className="text-sm font-semibold text-white mb-2 flex justify-between">
                       <span>{job.company}</span>
                       <span>
-                        <FontAwesomeIcon icon={faCalendar} className="me-2"/>
+                        <FontAwesomeIcon icon={faCalendar} className="me-2" />
                         {job.period}
                       </span>
                     </h4>
@@ -530,25 +533,73 @@ export default function Home() {
           >
             {[
               {
-                title: "E-commerce Platform",
+                title: "CRM",
+                tech: [
+                  "Angular",
+                  "PrimeNG",
+                  "ngx-bootstrap",
+                  "Bootstrap 5",
+                  "OAuth2",
+                ],
                 description:
-                  "Full-stack e-commerce solution with payment integration",
-                tech: ["React", "Node.js", "MongoDB"],
-                icon: faCode,
+                  "Developed a core CRM platform using Micro-Frontend architecture to manage the entire customer lifecycle—from lead generation to post-sale service—enhancing engagement and operational efficiency.",
+                icon: faAngular,
               },
               {
-                title: "Task Management App",
+                title: "Advance Payment",
+                tech: ["Angular", "PrimeNG", "Bootstrap 5", "OAuth2"],
                 description:
-                  "Collaborative task management with real-time updates",
-                tech: ["Next.js", "Socket.io", "PostgreSQL"],
-                icon: faTools,
+                  "Built a system for employee reimbursements and cash advance requests, enabling online submission, approval tracking, and integration with Finance and Accounting workflows.",
+                icon: faAngular,
               },
               {
-                title: "AI Chat Bot",
+                title: "MKT-Artwork Process",
+                tech: ["Angular", "Angular Material", "Bootstrap 5", "OAuth2"],
                 description:
-                  "Intelligent chatbot with natural language processing",
-                tech: ["Python", "TensorFlow", "FastAPI"],
-                icon: faDatabase,
+                  "Implemented a workflow management system for Marketing teams to coordinate advertising materials such as billboards and artwork—from request submission to approval and production tracking.",
+                icon: faAngular,
+              },
+              {
+                title: "Cash Out Flow Project",
+                tech: ["Angular", "PrimeNG", "Bootstrap 5", "OAuth2"],
+                description:
+                  "Developed a financial planning system for forecasting income and expenses to support budget control, improve cash flow visibility, and enhance proactive decision-making.",
+                icon: faAngular,
+              },
+              {
+                title: "CS Report",
+                tech: ["Angular", "Bootstrap 4", "OAuth2"],
+                description:
+                  "Created a reporting tool that imports raw Excel files from third-party sources to generate call center analytics, including inbound/outbound calls, wait times, pickups, abandoned calls, and custom reports.",
+                icon: faAngular,
+              },
+              {
+                title: "Site Service",
+                tech: ["Angular", "Kendo UI"],
+                description:
+                  "Built a system to manage work hours and income for on-site personnel such as security guards, gardeners, pool staff, and vendors under contract with residential or condo projects.",
+                icon: faAngular,
+              },
+              {
+                title: "Web Vendor",
+                tech: ["Angular", "Kendo UI"],
+                description:
+                  "Developed a vendor management platform for construction projects to handle quotation submission, milestone tracking, inspection approvals, invoicing, and payment monitoring.",
+                icon: faAngular,
+              },
+              {
+                title: "Agent Register",
+                tech: ["Angular", "Bootstrap 4", "PrimeNG"],
+                description:
+                  "Created an online registration system for life insurance agents to submit personal data, upload licenses, and complete payments securely through the platform.",
+                icon: faAngular,
+              },
+              {
+                title: "Unit Link",
+                tech: ["Angular", "Bootstrap 4", "PrimeNG"],
+                description:
+                  "Developed a platform to manage Unit-Linked insurance products, allowing in-house staff to record customer policy data and execute mutual fund transactions based on client instructions.",
+                icon: faAngular,
               },
             ].map((project, index) => (
               <motion.div
