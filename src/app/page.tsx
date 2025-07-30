@@ -57,16 +57,18 @@ export default function Home() {
 
   const downloadResume = () => {
     const now = new Date();
-    const timestamp = `${now.getDate().toString().padStart(2, '0')}-${(now.getMonth() + 1)
+    const timestamp = `${now.getDate().toString().padStart(2, "0")}-${(
+      now.getMonth() + 1
+    )
       .toString()
-      .padStart(2, '0')}-${now.getFullYear()}_${now
+      .padStart(2, "0")}-${now.getFullYear()}_${now
       .getHours()
       .toString()
-      .padStart(2, '0')}-${now.getMinutes().toString().padStart(2, '0')}`;
+      .padStart(2, "0")}-${now.getMinutes().toString().padStart(2, "0")}`;
 
-    const link = document.createElement('a');
-    link.href = '/Pinnida_Sangsud_Resume_2025.pdf'; // ไฟล์ต้องอยู่ใน public/
-    link.download = `Pinnida_Sangsud_Resume_${timestamp}.pdf`;; // กำหนดชื่อไฟล์ที่จะโหลด
+    const link = document.createElement("a");
+    link.href = "/Pinnida_Sangsud_Resume_2025.pdf"; // ไฟล์ต้องอยู่ใน public/
+    link.download = `Pinnida_Sangsud_Resume_${timestamp}.pdf`; // กำหนดชื่อไฟล์ที่จะโหลด
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -86,10 +88,11 @@ export default function Home() {
             <a
               key={item.id}
               href={`#${item.id}`}
-              className={`px-4 py-2 rounded-full transition-all duration-300 flex items-center gap-2 ${activeSection === item.id
+              className={`px-4 py-2 rounded-full transition-all duration-300 flex items-center gap-2 ${
+                activeSection === item.id
                   ? "bg-white/20 text-white"
                   : "text-white/70 hover:text-white hover:bg-white/10"
-                }`}
+              }`}
             >
               <FontAwesomeIcon icon={item.icon} className="w-4 h-4" />
               <span className="hidden md:inline">{item.label}</span>
@@ -130,7 +133,8 @@ export default function Home() {
           </p>
           <div
             onClick={downloadResume}
-            className="liquid-glass px-8 py-4 inline-block cursor-pointer hover:bg-white/20 transition-all duration-300">
+            className="liquid-glass px-8 py-4 inline-block cursor-pointer hover:bg-white/20 hover:scale-110 transition-all duration-300"
+          >
             <p className="text-lg text-white/90 flex items-center gap-2">
               <FontAwesomeIcon icon={faDownload} />
               Download Resume
@@ -141,17 +145,23 @@ export default function Home() {
           <div className="mt-8 flex justify-center gap-6">
             {[
               { icon: faGithub, href: "https://github.com/pinnida" },
-              { icon: faLinkedin, href: "https://www.linkedin.com/in/pinnida-s-782a1723a/" },
-              { icon: faLine, href: "https://line.me/ti/p/aV0cNj1VKV" }
+              {
+                icon: faLinkedin,
+                href: "https://www.linkedin.com/in/pinnida-s-782a1723a/",
+              },
+              { icon: faLine, href: "https://line.me/ti/p/aV0cNj1VKV" },
             ].map((social, index) => (
               <a
                 key={index}
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="liquid-glass p-3 hover:bg-white/20 transition-all duration-300"
+                className="liquid-glass p-3 hover:bg-white/20 hover:scale-110 transition-all duration-300"
               >
-                <FontAwesomeIcon icon={social.icon} className="w-6 h-6 text-white" />
+                <FontAwesomeIcon
+                  icon={social.icon}
+                  className="w-6 h-6 text-white"
+                />
               </a>
             ))}
           </div>
@@ -170,14 +180,20 @@ export default function Home() {
           </h2>
           <div className="glass-card p-8">
             <p className="text-lg text-white/90 leading-relaxed mb-6">
-              I'm a passionate full-stack developer with 5+ years of experience
-              creating innovative web applications. I love turning complex
-              problems into simple, beautiful designs.
+              Front-End Developer with 4+ years of experience building
+              responsive, high-performance web applications, specializing in{" "}
+              <b className="gradient-text">Angular-based</b> enterprise
+              solutions.
             </p>
             <p className="text-lg text-white/90 leading-relaxed">
-              My expertise spans across modern web technologies, and I'm always
-              eager to learn new tools and frameworks to deliver exceptional
-              user experiences.
+              Proficient in{" "}
+              <b className="gradient-text">Micro Frontend architecture</b>, UI
+              component libraries{" "}
+              <b className="gradient-text">
+                (PrimeNG, Kendo UI, Bootstrap4/5)
+              </b>
+              , and CI/CD deployment pipelines. Passionate about creating
+              scalable front-end architectures and enhancing user experiences.
             </p>
           </div>
         </div>
@@ -204,7 +220,10 @@ export default function Home() {
             ].map((skill, index) => (
               <div key={skill.name} className="glass-card p-6">
                 <div className="flex items-center gap-3 mb-4">
-                  <FontAwesomeIcon icon={skill.icon} className="w-6 h-6 text-blue-400" />
+                  <FontAwesomeIcon
+                    icon={skill.icon}
+                    className="w-6 h-6 text-blue-400"
+                  />
                   <h3 className="text-xl font-semibold text-white">
                     {skill.name}
                   </h3>
@@ -287,26 +306,29 @@ export default function Home() {
                 description:
                   "Full-stack e-commerce solution with payment integration",
                 tech: ["React", "Node.js", "MongoDB"],
-                icon: faCode
+                icon: faCode,
               },
               {
                 title: "Task Management App",
                 description:
                   "Collaborative task management with real-time updates",
                 tech: ["Next.js", "Socket.io", "PostgreSQL"],
-                icon: faTools
+                icon: faTools,
               },
               {
                 title: "AI Chat Bot",
                 description:
                   "Intelligent chatbot with natural language processing",
                 tech: ["Python", "TensorFlow", "FastAPI"],
-                icon: faDatabase
+                icon: faDatabase,
               },
             ].map((project, index) => (
               <div key={index} className="glass-card p-6 h-full">
                 <div className="flex items-center gap-3 mb-4">
-                  <FontAwesomeIcon icon={project.icon} className="w-6 h-6 text-purple-400" />
+                  <FontAwesomeIcon
+                    icon={project.icon}
+                    className="w-6 h-6 text-purple-400"
+                  />
                   <h3 className="text-xl font-semibold text-white">
                     {project.title}
                   </h3>

@@ -5,7 +5,7 @@
   --foreground: #ededed;
   --glass-bg: rgba(255, 255, 255, 0.1);
   --glass-border: rgba(255, 255, 255, 0.2);
-  --accent: #00d4ff;
+  --accent: #0060d1;
   --accent-secondary: #ff006e;
 }
 
@@ -33,7 +33,7 @@ body {
 
 /* Liquid Glass Effects */
 .liquid-glass {
-  background: var(--glass-bg);
+  /* background: var(--glass-bg); */
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--glass-border);
