@@ -185,7 +185,7 @@ export default function Home() {
       {/* Hero Section */}
       <section
         id="home"
-        className="min-h-screen flex items-center justify-center px-6"
+        className="min-h-screen flex items-center justify-center px-6 pt-30"
       >
         <motion.div
           className="text-center floating"
@@ -255,7 +255,7 @@ export default function Home() {
       {/* About Section */}
       <motion.section
         id="about"
-        className="min-h-screen flex items-center justify-center px-6"
+        className="min-h-screen flex items-center justify-center px-6 pt-30"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -313,7 +313,7 @@ export default function Home() {
       {/* Skills Section */}
       <motion.section
         id="skills"
-        className="min-h-screen flex items-center justify-center px-6"
+        className="min-h-screen flex items-center justify-center px-6 pt-30"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -378,7 +378,7 @@ export default function Home() {
       {/* Experience Section */}
       <motion.section
         id="experience"
-        className="min-h-screen flex items-center justify-center px-6"
+        className="min-h-screen flex items-center justify-center px-6 pt-30"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -507,7 +507,7 @@ export default function Home() {
       {/* Projects Section */}
       <motion.section
         id="projects"
-        className="min-h-screen flex items-center justify-center px-6"
+        className="min-h-screen flex items-center justify-center px-6 pt-30"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
