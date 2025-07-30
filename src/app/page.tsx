@@ -1,30 +1,30 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
-  faHome, 
-  faUser, 
-  faCogs, 
-  faBriefcase, 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faHome,
+  faUser,
+  faCogs,
+  faBriefcase,
   faProjectDiagram,
   faDownload,
   faCode,
   faDatabase,
   faCloud,
   faTools,
-} from '@fortawesome/free-solid-svg-icons';
-import { 
-  faReact, 
-  faNodeJs, 
-  faPython, 
-  faAws, 
+} from "@fortawesome/free-solid-svg-icons";
+import {
+  faReact,
+  faNodeJs,
+  faPython,
+  faAws,
   faDocker,
   faGithub,
   faLinkedin,
   faTwitter,
-  faLine
-} from '@fortawesome/free-brands-svg-icons';
+  faLine,
+} from "@fortawesome/free-brands-svg-icons";
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("home");
@@ -55,6 +55,23 @@ export default function Home() {
     { id: "projects", label: "Projects", icon: faProjectDiagram },
   ];
 
+  const downloadResume = () => {
+    const now = new Date();
+    const timestamp = `${now.getDate().toString().padStart(2, '0')}-${(now.getMonth() + 1)
+      .toString()
+      .padStart(2, '0')}-${now.getFullYear()}_${now
+      .getHours()
+      .toString()
+      .padStart(2, '0')}-${now.getMinutes().toString().padStart(2, '0')}`;
+
+    const link = document.createElement('a');
+    link.href = '/Pinnida_Sangsud_Resume_2025.pdf'; // ไฟล์ต้องอยู่ใน public/
+    link.download = `Pinnida_Sangsud_Resume_${timestamp}.pdf`;; // กำหนดชื่อไฟล์ที่จะโหลด
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="min-h-screen relative">
       {/* Floating Background Elements */}
@@ -69,11 +86,10 @@ export default function Home() {
             <a
               key={item.id}
               href={`#${item.id}`}
-              className={`px-4 py-2 rounded-full transition-all duration-300 flex items-center gap-2 ${
-                activeSection === item.id
+              className={`px-4 py-2 rounded-full transition-all duration-300 flex items-center gap-2 ${activeSection === item.id
                   ? "bg-white/20 text-white"
                   : "text-white/70 hover:text-white hover:bg-white/10"
-              }`}
+                }`}
             >
               <FontAwesomeIcon icon={item.icon} className="w-4 h-4" />
               <span className="hidden md:inline">{item.label}</span>
@@ -81,6 +97,23 @@ export default function Home() {
           ))}
         </div>
       </nav>
+
+      {/* <div className="min-h-screen flex justify-center items-center">
+        <div className="rounded-2xl p-6 backdrop-blur-xl bg-white/10 border border-white/20 shadow-lg text-white w-full max-w-xl">
+          <div className="flex items-start justify-between">
+            <div>
+              <h2 className="text-2xl font-bold">AmirAli Rashidi</h2>
+              <p className="mt-2 text-sm text-white/80">
+                Innovative Front-End Developer with 4+ years of expertise in
+                building responsive, high-performance web applications...
+              </p>
+              <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">
+                Download Resume
+              </button>
+            </div>
+          </div>
+        </div>
+      </div> */}
 
       {/* Hero Section */}
       <section
@@ -95,13 +128,15 @@ export default function Home() {
             <FontAwesomeIcon icon={faCode} className="mr-3" />
             Front-End Developer
           </p>
-          <div className="liquid-glass px-8 py-4 inline-block cursor-pointer hover:bg-white/20 transition-all duration-300">
+          <div
+            onClick={downloadResume}
+            className="liquid-glass px-8 py-4 inline-block cursor-pointer hover:bg-white/20 transition-all duration-300">
             <p className="text-lg text-white/90 flex items-center gap-2">
               <FontAwesomeIcon icon={faDownload} />
               Download Resume
             </p>
           </div>
-          
+
           {/* Social Links */}
           <div className="mt-8 flex justify-center gap-6">
             {[
@@ -297,7 +332,7 @@ export default function Home() {
       <footer className="py-12 text-center">
         <div className="liquid-glass px-8 py-4 inline-block">
           <p className="text-white/90">
-            © 2024 Your Name. All rights reserved.
+            © 2025 Pinnida Sa. All rights reserved.
           </p>
         </div>
       </footer>
