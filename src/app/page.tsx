@@ -1,12 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  Variants,
-} from "framer-motion";
+import { motion, useScroll, useTransform, Variants } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
@@ -18,6 +13,9 @@ import {
   faCode,
   faDatabase,
   faTools,
+  faCalendar,
+  faCalendarWeek,
+  faCalendarPlus
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faGithub,
@@ -25,7 +23,6 @@ import {
   faLine,
 } from "@fortawesome/free-brands-svg-icons";
 import Image from "next/image";
-
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("home");
@@ -360,7 +357,12 @@ export default function Home() {
                     alt={skill.name}
                     className="w-8 h-8 object-contain"
                   /> */}
-                  <Image src={skill.icon} alt={skill.name} width={32} height={32} />
+                  <Image
+                    src={skill.icon}
+                    alt={skill.name}
+                    width={32}
+                    height={32}
+                  />
 
                   <h3 className="text-xl font-semibold text-white">
                     {skill.name}
@@ -401,24 +403,44 @@ export default function Home() {
           >
             {[
               {
-                title: "Senior Full Stack Developer",
-                company: "Tech Corp",
-                period: "2022 - Present",
+                title: "Angular Developer",
+                permanant: false,
+                company: "PP & P Advance Co.,Ltd (Onsite AP Thai)",
+                period: "Apr 2024 - Present",
                 description:
-                  "Led development of microservices architecture serving 1M+ users",
+                  "Delivered 4 Angular projects; migrated Angular 7 to 18 with Micro Frontend, improving scalability and modular deployment.",
               },
               {
-                title: "Frontend Developer",
-                company: "StartupXYZ",
-                period: "2020 - 2022",
+                title: "Programmer (Assistant-Manager)",
+                permanant: true,
+                company: "Rabbit Life Insurance PCL.",
+                period: "Mar 2023 - Aug 2023",
                 description:
-                  "Built responsive web applications using React and TypeScript",
+                  "Coordinated between vendors and users to align specs, led QA/testing with feedback, planned releases, and developed Angular-based reports for the tele-sales team",
               },
               {
-                title: "Junior Developer",
-                company: "Digital Agency",
-                period: "2019 - 2020",
-                description: "Developed custom WordPress themes and plugins",
+                title: "Angular Developer",
+                permanant: false,
+                company: "3i InfoTech Ltd. (Onsite AP Thai)",
+                period: "Aug 2021 - Feb 2023",
+                description:
+                  "Built 2 Angular apps using Bootstrap 4/Kendo UI from mockups, integrated C# APIs, deployed via Jenkins.",
+              },
+              {
+                title: "Junior Front-End Developer",
+                permanant: true,
+                company: "PhillipLife Assurance PCL.",
+                period: "Jan 2018 - July 2021",
+                description:
+                  "Developed insurance app from scratch with Angular, HTML/SCSS, Bootstrap; supported API integration and UAT.",
+              },
+              {
+                title: "Senior Operation Associate (Non-IT)",
+                permanant: true,
+                company: "Lazada Thailand",
+                period: "Mar 2016 – Nov 2017",
+                description:
+                  "Solved logistics issues across teams; promoted to Senior and awarded 'Best Employee' (Dec 2016).",
               },
             ].map((job, index) => (
               <motion.div
@@ -427,12 +449,18 @@ export default function Home() {
                 variants={itemVariants}
                 whileHover={{ scale: 1.02, x: 10 }}
               >
-                <h3 className="text-2xl font-semibold text-white mb-2">
+                <h3 className="text-2xl font-bold gradient-text mb-2">
                   {job.title}
                 </h3>
-                <h4 className="text-lg gradient-text mb-2">{job.company}</h4>
-                <p className="text-white/70 mb-4">{job.period}</p>
-                <p className="text-white/90">{job.description}</p>
+                {/* <h4 className="text-xs font-semibold text-white mb-2">{job.company} | {job.period}</h4> */}
+                <h4 className="text-xs font-semibold text-white mb-2 flex justify-between">
+                  <span>{job.company}</span>
+                  <span>
+                    <FontAwesomeIcon icon={faCalendar} className="me-2"/>
+                    {job.period}
+                  </span>
+                </h4>
+                <p className="text-xs text-white/90">{job.description}</p>
               </motion.div>
             ))}
           </motion.div>
