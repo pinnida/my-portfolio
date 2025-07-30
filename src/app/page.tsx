@@ -395,74 +395,108 @@ export default function Home() {
             Job Experience
           </motion.h2>
           <motion.div
-            className="space-y-8"
+            className="relative"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
           >
-            {[
-              {
-                title: "Angular Developer",
-                permanant: false,
-                company: "PP & P Advance Co.,Ltd (Onsite AP Thai)",
-                period: "Apr 2024 - Present",
-                description:
-                  "Delivered 4 Angular projects; migrated Angular 7 to 18 with Micro Frontend, improving scalability and modular deployment.",
-              },
-              {
-                title: "Programmer (Assistant-Manager)",
-                permanant: true,
-                company: "Rabbit Life Insurance PCL.",
-                period: "Mar 2023 - Aug 2023",
-                description:
-                  "Coordinated between vendors and users to align specs, led QA/testing with feedback, planned releases, and developed Angular-based reports for the tele-sales team",
-              },
-              {
-                title: "Angular Developer",
-                permanant: false,
-                company: "3i InfoTech Ltd. (Onsite AP Thai)",
-                period: "Aug 2021 - Feb 2023",
-                description:
-                  "Built 2 Angular apps using Bootstrap 4/Kendo UI from mockups, integrated C# APIs, deployed via Jenkins.",
-              },
-              {
-                title: "Junior Front-End Developer",
-                permanant: true,
-                company: "PhillipLife Assurance PCL.",
-                period: "Jan 2018 - July 2021",
-                description:
-                  "Developed insurance app from scratch with Angular, HTML/SCSS, Bootstrap; supported API integration and UAT.",
-              },
-              {
-                title: "Senior Operation Associate (Non-IT)",
-                permanant: true,
-                company: "Lazada Thailand",
-                period: "Mar 2016 – Nov 2017",
-                description:
-                  "Solved logistics issues across teams; promoted to Senior and awarded 'Best Employee' (Dec 2016).",
-              },
-            ].map((job, index) => (
-              <motion.div
-                key={index}
-                className="glass-card p-6"
-                variants={itemVariants}
-                whileHover={{ scale: 1.02, x: 10 }}
-              >
-                <h3 className="text-2xl font-bold gradient-text mb-2">
-                  {job.title}
-                </h3>
-                {/* <h4 className="text-xs font-semibold text-white mb-2">{job.company} | {job.period}</h4> */}
-                <h4 className="text-xs font-semibold text-white mb-2 flex justify-between">
-                  <span>{job.company}</span>
-                  <span>
-                    <FontAwesomeIcon icon={faCalendar} className="me-2"/>
-                    {job.period}
-                  </span>
-                </h4>
-                <p className="text-xs text-white/90">{job.description}</p>
-              </motion.div>
-            ))}
+            {/* Timeline Line */}
+            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-400 via-blue-400 to-pink-400"></div>
+            
+            <div className="space-y-8">
+              {[
+                {
+                  title: "Angular Developer",
+                  permanant: false,
+                  company: "PP & P Advance Co.,Ltd (Onsite AP Thai)",
+                  period: "Apr 2024 - Present",
+                  description:
+                    "Delivered 4 Angular projects; migrated Angular 7 to 18 with Micro Frontend, improving scalability and modular deployment.",
+                },
+                {
+                  title: "Programmer (Assistant-Manager)",
+                  permanant: true,
+                  company: "Rabbit Life Insurance PCL.",
+                  period: "Mar 2023 - Aug 2023",
+                  description:
+                    "Coordinated between vendors and users to align specs, led QA/testing with feedback, planned releases, and developed Angular-based reports for the tele-sales team",
+                },
+                {
+                  title: "Angular Developer",
+                  permanant: false,
+                  company: "3i InfoTech Ltd. (Onsite AP Thai)",
+                  period: "Aug 2021 - Feb 2023",
+                  description:
+                    "Built 2 Angular apps using Bootstrap 4/Kendo UI from mockups, integrated C# APIs, deployed via Jenkins.",
+                },
+                {
+                  title: "Junior Front-End Developer",
+                  permanant: true,
+                  company: "PhillipLife Assurance PCL.",
+                  period: "Jan 2018 - July 2021",
+                  description:
+                    "Developed insurance app from scratch with Angular, HTML/SCSS, Bootstrap; supported API integration and UAT.",
+                },
+                {
+                  title: "Senior Operation Associate (Non-IT)",
+                  permanant: true,
+                  company: "Lazada Thailand",
+                  period: "Mar 2016 – Nov 2017",
+                  description:
+                    "Solved logistics issues across teams; promoted to Senior and awarded 'Best Employee' (Dec 2016).",
+                },
+              ].map((job, index) => (
+                <motion.div
+                  key={index}
+                  className="relative flex items-start"
+                  variants={itemVariants}
+                >
+                  {/* Timeline Circle */}
+                  <div className="relative z-10 flex-shrink-0">
+                    <motion.div
+                      className={`w-4 h-4 rounded-full border-2 ${
+                        job.permanant 
+                          ? 'bg-green-400 border-green-400' 
+                          : 'bg-orange-400 border-orange-400'
+                      } shadow-lg`}
+                      whileHover={{ scale: 1.5 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    ></motion.div>
+                  </div>
+                  
+                  {/* Timeline Connector */}
+                  <div className="w-8 h-0.5 bg-gradient-to-r from-purple-400 to-transparent mt-2 flex-shrink-0"></div>
+                  
+                  {/* Job Card */}
+                  <motion.div
+                    className="glass-card p-6 flex-1 ml-2"
+                    whileHover={{ scale: 1.02, x: 10 }}
+                  >
+                    <div className="flex items-start justify-between mb-2">
+                      <h3 className="text-2xl font-bold gradient-text">
+                        {job.title}
+                      </h3>
+                      <span className={`px-2 py-1 rounded-full text-xs font-semibold ${
+                        job.permanant 
+                          ? 'bg-green-400/20 text-green-300' 
+                          : 'bg-orange-400/20 text-orange-300'
+                      }`}>
+                        {job.permanant ? 'Permanent' : 'Contract'}
+                      </span>
+                    </div>
+                    <h4 className="text-sm font-semibold text-white mb-2 flex justify-between">
+                      <span>{job.company}</span>
+                      <span>
+                        <FontAwesomeIcon icon={faCalendar} className="me-2"/>
+                        {job.period}
+                      </span>
+                    </h4>
+                    <p className="text-sm text-white/90">{job.description}</p>
+                  </motion.div>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
         </div>
       </motion.section>
