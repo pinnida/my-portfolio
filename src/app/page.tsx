@@ -1,7 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, useScroll, useTransform, useInView, Variants } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  Variants,
+} from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
@@ -12,20 +17,15 @@ import {
   faDownload,
   faCode,
   faDatabase,
-  faCloud,
   faTools,
 } from "@fortawesome/free-solid-svg-icons";
 import {
-  faReact,
-  faNodeJs,
-  faPython,
-  faAws,
-  faDocker,
   faGithub,
   faLinkedin,
-  faTwitter,
   faLine,
 } from "@fortawesome/free-brands-svg-icons";
+import Image from "next/image";
+
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("home");
@@ -80,9 +80,9 @@ export default function Home() {
       transition: {
         duration: 4,
         repeat: Infinity,
-        ease: "easeInOut"
-      }
-    }
+        ease: "easeInOut",
+      },
+    },
   };
 
   const menuItems = [
@@ -115,7 +115,7 @@ export default function Home() {
   return (
     <div className="min-h-screen relative">
       {/* Animated Floating Background Elements */}
-      <motion.div 
+      <motion.div
         className="liquid-blob w-72 h-72 bg-blue-400 top-20 left-20"
         style={{ y }}
         animate={{
@@ -125,10 +125,10 @@ export default function Home() {
         transition={{
           duration: 20,
           repeat: Infinity,
-          ease: "linear"
+          ease: "linear",
         }}
       ></motion.div>
-      <motion.div 
+      <motion.div
         className="liquid-blob w-96 h-96 bg-purple-400 top-1/2 right-20"
         style={{ y: useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]) }}
         animate={{
@@ -138,10 +138,10 @@ export default function Home() {
         transition={{
           duration: 25,
           repeat: Infinity,
-          ease: "linear"
+          ease: "linear",
         }}
       ></motion.div>
-      <motion.div 
+      <motion.div
         className="liquid-blob w-64 h-64 bg-pink-400 bottom-20 left-1/3"
         animate={{
           y: [0, -80, 0],
@@ -150,12 +150,12 @@ export default function Home() {
         transition={{
           duration: 15,
           repeat: Infinity,
-          ease: "easeInOut"
+          ease: "easeInOut",
         }}
       ></motion.div>
 
       {/* Animated Navigation */}
-      <motion.nav 
+      <motion.nav
         className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 liquid-glass px-6 py-3"
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -189,19 +189,19 @@ export default function Home() {
         id="home"
         className="min-h-screen flex items-center justify-center px-6"
       >
-        <motion.div 
+        <motion.div
           className="text-center floating"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          <motion.h1 
+          <motion.h1
             className="text-6xl md:text-8xl font-bold mb-6 gradient-text"
             variants={itemVariants}
           >
             Pinnida Sangsud
           </motion.h1>
-          <motion.p 
+          <motion.p
             className="text-2xl md:text-3xl text-white/80 mb-8"
             variants={itemVariants}
           >
@@ -222,7 +222,7 @@ export default function Home() {
           </motion.div>
 
           {/* Social Links */}
-          <motion.div 
+          <motion.div
             className="mt-8 flex justify-center gap-6"
             variants={containerVariants}
           >
@@ -264,7 +264,7 @@ export default function Home() {
         viewport={{ once: true }}
       >
         <div className="max-w-4xl mx-auto">
-          <motion.h2 
+          <motion.h2
             className="text-5xl font-bold gradient-text mb-12 text-center flex items-center justify-center gap-4"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -274,7 +274,7 @@ export default function Home() {
             <FontAwesomeIcon icon={faUser} />
             About Me
           </motion.h2>
-          <motion.div 
+          <motion.div
             className="glass-card p-8"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -282,7 +282,7 @@ export default function Home() {
             viewport={{ once: true }}
             whileHover={{ scale: 1.02 }}
           >
-            <motion.p 
+            <motion.p
               className="text-lg text-white/90 leading-relaxed mb-6"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -294,7 +294,7 @@ export default function Home() {
               <b className="gradient-text">Angular-based</b> enterprise
               solutions.
             </motion.p>
-            <motion.p 
+            <motion.p
               className="text-lg text-white/90 leading-relaxed"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -304,9 +304,7 @@ export default function Home() {
               Proficient in{" "}
               <b className="gradient-text">Micro Frontend architecture</b>, UI
               component libraries{" "}
-              <b className="gradient-text">
-                (PrimeNG, Kendo UI, Bootstrap4/5)
-              </b>
+              <b className="gradient-text">(PrimeNG, Kendo UI, Bootstrap4/5)</b>
               , and CI/CD deployment pipelines. Passionate about creating
               scalable front-end architectures and enhancing user experiences.
             </motion.p>
@@ -324,7 +322,7 @@ export default function Home() {
         viewport={{ once: true }}
       >
         <div className="max-w-6xl mx-auto">
-          <motion.h2 
+          <motion.h2
             className="text-5xl font-bold gradient-text mb-12 text-center flex items-center justify-center gap-4"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -334,7 +332,7 @@ export default function Home() {
             <FontAwesomeIcon icon={faCogs} />
             Skills
           </motion.h2>
-          <motion.div 
+          <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
             variants={containerVariants}
             initial="hidden"
@@ -342,41 +340,32 @@ export default function Home() {
             viewport={{ once: true }}
           >
             {[
-              { name: "React/Next.js", level: 90, icon: faReact },
-              { name: "TypeScript", level: 85, icon: faCode },
-              { name: "Node.js", level: 80, icon: faNodeJs },
-              { name: "Python", level: 75, icon: faPython },
-              { name: "AWS", level: 70, icon: faAws },
-              { name: "Docker", level: 75, icon: faDocker },
+              { name: "HTML", icon: "/skills/html.png" },
+              { name: "CSS/SCSS", icon: "/skills/css.png" },
+              { name: "JavaScript", icon: "/skills/javascript.png" },
+              { name: "TypeScript", icon: "/skills/typescript.png" },
+              { name: "Angular", icon: "/skills/angular.png" },
+              { name: "Git", icon: "/skills/git.png" },
             ].map((skill, index) => (
-              <motion.div 
-                key={skill.name} 
+              <motion.div
+                key={skill.name}
                 className="glass-card p-6"
                 variants={itemVariants}
                 whileHover={{ scale: 1.05, y: -10 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <FontAwesomeIcon
-                    icon={skill.icon}
-                    className="w-6 h-6 text-blue-400"
-                  />
+                  {/* <img
+                    src={skill.icon}
+                    alt={skill.name}
+                    className="w-8 h-8 object-contain"
+                  /> */}
+                  <Image src={skill.icon} alt={skill.name} width={32} height={32} />
+
                   <h3 className="text-xl font-semibold text-white">
                     {skill.name}
                   </h3>
                 </div>
-                <div className="w-full bg-white/20 rounded-full h-2">
-                  <motion.div
-                    className="bg-gradient-to-r from-blue-400 to-purple-400 h-2 rounded-full"
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${skill.level}%` }}
-                    transition={{ duration: 1.5, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                  ></motion.div>
-                </div>
-                <span className="text-white/70 text-sm mt-2 block">
-                  {skill.level}%
-                </span>
               </motion.div>
             ))}
           </motion.div>
@@ -393,7 +382,7 @@ export default function Home() {
         viewport={{ once: true }}
       >
         <div className="max-w-4xl mx-auto">
-          <motion.h2 
+          <motion.h2
             className="text-5xl font-bold gradient-text mb-12 text-center flex items-center justify-center gap-4"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -403,7 +392,7 @@ export default function Home() {
             <FontAwesomeIcon icon={faBriefcase} />
             Job Experience
           </motion.h2>
-          <motion.div 
+          <motion.div
             className="space-y-8"
             variants={containerVariants}
             initial="hidden"
@@ -432,8 +421,8 @@ export default function Home() {
                 description: "Developed custom WordPress themes and plugins",
               },
             ].map((job, index) => (
-              <motion.div 
-                key={index} 
+              <motion.div
+                key={index}
                 className="glass-card p-6"
                 variants={itemVariants}
                 whileHover={{ scale: 1.02, x: 10 }}
@@ -460,7 +449,7 @@ export default function Home() {
         viewport={{ once: true }}
       >
         <div className="max-w-6xl mx-auto">
-          <motion.h2 
+          <motion.h2
             className="text-5xl font-bold gradient-text mb-12 text-center flex items-center justify-center gap-4"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -470,7 +459,7 @@ export default function Home() {
             <FontAwesomeIcon icon={faProjectDiagram} />
             Projects
           </motion.h2>
-          <motion.div 
+          <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             variants={containerVariants}
             initial="hidden"
@@ -500,14 +489,14 @@ export default function Home() {
                 icon: faDatabase,
               },
             ].map((project, index) => (
-              <motion.div 
-                key={index} 
+              <motion.div
+                key={index}
                 className="glass-card p-6 h-full"
                 variants={itemVariants}
-                whileHover={{ 
-                  scale: 1.05, 
+                whileHover={{
+                  scale: 1.05,
                   rotateY: 5,
-                  transition: { type: "spring", stiffness: 300 }
+                  transition: { type: "spring", stiffness: 300 },
                 }}
               >
                 <div className="flex items-center gap-3 mb-4">
@@ -527,9 +516,9 @@ export default function Home() {
                       className="px-3 py-1 bg-white/20 rounded-full text-sm text-white/90"
                       initial={{ opacity: 0, scale: 0 }}
                       whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ 
-                        duration: 0.3, 
-                        delay: techIndex * 0.1 
+                      transition={{
+                        duration: 0.3,
+                        delay: techIndex * 0.1,
                       }}
                       viewport={{ once: true }}
                       whileHover={{ scale: 1.1 }}
@@ -545,7 +534,7 @@ export default function Home() {
       </motion.section>
 
       {/* Footer */}
-      <motion.footer 
+      <motion.footer
         className="py-12 text-center"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
