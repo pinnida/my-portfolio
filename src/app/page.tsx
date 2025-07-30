@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { motion, useScroll, useTransform, useInView, Variants } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
@@ -28,6 +29,8 @@ import {
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("home");
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,6 +49,41 @@ export default function Home() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Animation variants
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        duration: 0.6,
+      },
+    },
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.6, -0.05, 0.01, 0.99],
+      },
+    },
+  };
+
+  const floatingVariants = {
+    animate: {
+      y: [-20, 20, -20],
+      transition: {
+        duration: 4,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }
+    }
+  };
 
   const menuItems = [
     { id: "home", label: "Home", icon: faHome },
@@ -76,16 +114,56 @@ export default function Home() {
 
   return (
     <div className="min-h-screen relative">
-      {/* Floating Background Elements */}
-      <div className="liquid-blob w-72 h-72 bg-blue-400 top-20 left-20"></div>
-      <div className="liquid-blob w-96 h-96 bg-purple-400 top-1/2 right-20"></div>
-      <div className="liquid-blob w-64 h-64 bg-pink-400 bottom-20 left-1/3"></div>
+      {/* Animated Floating Background Elements */}
+      <motion.div 
+        className="liquid-blob w-72 h-72 bg-blue-400 top-20 left-20"
+        style={{ y }}
+        animate={{
+          x: [0, 100, 0],
+          rotate: [0, 180, 360],
+        }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          ease: "linear"
+        }}
+      ></motion.div>
+      <motion.div 
+        className="liquid-blob w-96 h-96 bg-purple-400 top-1/2 right-20"
+        style={{ y: useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]) }}
+        animate={{
+          x: [0, -50, 0],
+          rotate: [0, -180, -360],
+        }}
+        transition={{
+          duration: 25,
+          repeat: Infinity,
+          ease: "linear"
+        }}
+      ></motion.div>
+      <motion.div 
+        className="liquid-blob w-64 h-64 bg-pink-400 bottom-20 left-1/3"
+        animate={{
+          y: [0, -80, 0],
+          x: [0, 50, 0],
+        }}
+        transition={{
+          duration: 15,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      ></motion.div>
 
-      {/* Navigation */}
-      <nav className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 liquid-glass px-6 py-3">
+      {/* Animated Navigation */}
+      <motion.nav 
+        className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 liquid-glass px-6 py-3"
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+      >
         <div className="flex space-x-6">
-          {menuItems.map((item) => (
-            <a
+          {menuItems.map((item, index) => (
+            <motion.a
               key={item.id}
               href={`#${item.id}`}
               className={`px-4 py-2 rounded-full transition-all duration-300 flex items-center gap-2 ${
@@ -93,56 +171,61 @@ export default function Home() {
                   ? "bg-white/20 text-white"
                   : "text-white/70 hover:text-white hover:bg-white/10"
               }`}
+              initial={{ y: -50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
             >
               <FontAwesomeIcon icon={item.icon} className="w-4 h-4" />
               <span className="hidden md:inline">{item.label}</span>
-            </a>
+            </motion.a>
           ))}
         </div>
-      </nav>
-
-      {/* <div className="min-h-screen flex justify-center items-center">
-        <div className="rounded-2xl p-6 backdrop-blur-xl bg-white/10 border border-white/20 shadow-lg text-white w-full max-w-xl">
-          <div className="flex items-start justify-between">
-            <div>
-              <h2 className="text-2xl font-bold">AmirAli Rashidi</h2>
-              <p className="mt-2 text-sm text-white/80">
-                Innovative Front-End Developer with 4+ years of expertise in
-                building responsive, high-performance web applications...
-              </p>
-              <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">
-                Download Resume
-              </button>
-            </div>
-          </div>
-        </div>
-      </div> */}
+      </motion.nav>
 
       {/* Hero Section */}
       <section
         id="home"
         className="min-h-screen flex items-center justify-center px-6"
       >
-        <div className="text-center floating">
-          <h1 className="text-6xl md:text-8xl font-bold mb-6 gradient-text">
+        <motion.div 
+          className="text-center floating"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.h1 
+            className="text-6xl md:text-8xl font-bold mb-6 gradient-text"
+            variants={itemVariants}
+          >
             Pinnida Sangsud
-          </h1>
-          <p className="text-2xl md:text-3xl text-white/80 mb-8">
+          </motion.h1>
+          <motion.p 
+            className="text-2xl md:text-3xl text-white/80 mb-8"
+            variants={itemVariants}
+          >
             <FontAwesomeIcon icon={faCode} className="mr-3" />
             Front-End Developer
-          </p>
-          <div
+          </motion.p>
+          <motion.div
             onClick={downloadResume}
-            className="liquid-glass px-8 py-4 inline-block cursor-pointer hover:bg-white/20 hover:scale-110 transition-all duration-300"
+            className="liquid-glass px-8 py-4 inline-block cursor-pointer hover:bg-white/20 transition-all duration-300"
+            variants={itemVariants}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
           >
             <p className="text-lg text-white/90 flex items-center gap-2">
               <FontAwesomeIcon icon={faDownload} />
               Download Resume
             </p>
-          </div>
+          </motion.div>
 
           {/* Social Links */}
-          <div className="mt-8 flex justify-center gap-6">
+          <motion.div 
+            className="mt-8 flex justify-center gap-6"
+            variants={containerVariants}
+          >
             {[
               { icon: faGithub, href: "https://github.com/pinnida" },
               {
@@ -151,41 +234,73 @@ export default function Home() {
               },
               { icon: faLine, href: "https://line.me/ti/p/aV0cNj1VKV" },
             ].map((social, index) => (
-              <a
+              <motion.a
                 key={index}
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="liquid-glass p-3 hover:bg-white/20 hover:scale-110 transition-all duration-300"
+                className="liquid-glass p-3 hover:bg-white/20 transition-all duration-300"
+                variants={itemVariants}
+                whileHover={{ scale: 1.2, rotate: 10 }}
+                whileTap={{ scale: 0.9 }}
               >
                 <FontAwesomeIcon
                   icon={social.icon}
                   className="w-6 h-6 text-white"
                 />
-              </a>
+              </motion.a>
             ))}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* About Section */}
-      <section
+      <motion.section
         id="about"
         className="min-h-screen flex items-center justify-center px-6"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
       >
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-5xl font-bold gradient-text mb-12 text-center flex items-center justify-center gap-4">
+          <motion.h2 
+            className="text-5xl font-bold gradient-text mb-12 text-center flex items-center justify-center gap-4"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
             <FontAwesomeIcon icon={faUser} />
             About Me
-          </h2>
-          <div className="glass-card p-8">
-            <p className="text-lg text-white/90 leading-relaxed mb-6">
+          </motion.h2>
+          <motion.div 
+            className="glass-card p-8"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            whileHover={{ scale: 1.02 }}
+          >
+            <motion.p 
+              className="text-lg text-white/90 leading-relaxed mb-6"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+            >
               Front-End Developer with 4+ years of experience building
               responsive, high-performance web applications, specializing in{" "}
               <b className="gradient-text">Angular-based</b> enterprise
               solutions.
-            </p>
-            <p className="text-lg text-white/90 leading-relaxed">
+            </motion.p>
+            <motion.p 
+              className="text-lg text-white/90 leading-relaxed"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              viewport={{ once: true }}
+            >
               Proficient in{" "}
               <b className="gradient-text">Micro Frontend architecture</b>, UI
               component libraries{" "}
@@ -194,22 +309,38 @@ export default function Home() {
               </b>
               , and CI/CD deployment pipelines. Passionate about creating
               scalable front-end architectures and enhancing user experiences.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Skills Section */}
-      <section
+      <motion.section
         id="skills"
         className="min-h-screen flex items-center justify-center px-6"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
       >
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-5xl font-bold gradient-text mb-12 text-center flex items-center justify-center gap-4">
+          <motion.h2 
+            className="text-5xl font-bold gradient-text mb-12 text-center flex items-center justify-center gap-4"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
             <FontAwesomeIcon icon={faCogs} />
             Skills
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          </motion.h2>
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             {[
               { name: "React/Next.js", level: 90, icon: faReact },
               { name: "TypeScript", level: 85, icon: faCode },
@@ -218,7 +349,13 @@ export default function Home() {
               { name: "AWS", level: 70, icon: faAws },
               { name: "Docker", level: 75, icon: faDocker },
             ].map((skill, index) => (
-              <div key={skill.name} className="glass-card p-6">
+              <motion.div 
+                key={skill.name} 
+                className="glass-card p-6"
+                variants={itemVariants}
+                whileHover={{ scale: 1.05, y: -10 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
                 <div className="flex items-center gap-3 mb-4">
                   <FontAwesomeIcon
                     icon={skill.icon}
@@ -229,31 +366,50 @@ export default function Home() {
                   </h3>
                 </div>
                 <div className="w-full bg-white/20 rounded-full h-2">
-                  <div
-                    className="bg-gradient-to-r from-blue-400 to-purple-400 h-2 rounded-full transition-all duration-1000"
-                    style={{ width: `${skill.level}%` }}
-                  ></div>
+                  <motion.div
+                    className="bg-gradient-to-r from-blue-400 to-purple-400 h-2 rounded-full"
+                    initial={{ width: 0 }}
+                    whileInView={{ width: `${skill.level}%` }}
+                    transition={{ duration: 1.5, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                  ></motion.div>
                 </div>
                 <span className="text-white/70 text-sm mt-2 block">
                   {skill.level}%
                 </span>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Experience Section */}
-      <section
+      <motion.section
         id="experience"
         className="min-h-screen flex items-center justify-center px-6"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
       >
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-5xl font-bold gradient-text mb-12 text-center flex items-center justify-center gap-4">
+          <motion.h2 
+            className="text-5xl font-bold gradient-text mb-12 text-center flex items-center justify-center gap-4"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
             <FontAwesomeIcon icon={faBriefcase} />
             Job Experience
-          </h2>
-          <div className="space-y-8">
+          </motion.h2>
+          <motion.div 
+            className="space-y-8"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             {[
               {
                 title: "Senior Full Stack Developer",
@@ -276,30 +432,51 @@ export default function Home() {
                 description: "Developed custom WordPress themes and plugins",
               },
             ].map((job, index) => (
-              <div key={index} className="glass-card p-6">
+              <motion.div 
+                key={index} 
+                className="glass-card p-6"
+                variants={itemVariants}
+                whileHover={{ scale: 1.02, x: 10 }}
+              >
                 <h3 className="text-2xl font-semibold text-white mb-2">
                   {job.title}
                 </h3>
                 <h4 className="text-lg gradient-text mb-2">{job.company}</h4>
                 <p className="text-white/70 mb-4">{job.period}</p>
                 <p className="text-white/90">{job.description}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Projects Section */}
-      <section
+      <motion.section
         id="projects"
         className="min-h-screen flex items-center justify-center px-6"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
       >
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-5xl font-bold gradient-text mb-12 text-center flex items-center justify-center gap-4">
+          <motion.h2 
+            className="text-5xl font-bold gradient-text mb-12 text-center flex items-center justify-center gap-4"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
             <FontAwesomeIcon icon={faProjectDiagram} />
             Projects
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          </motion.h2>
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             {[
               {
                 title: "E-commerce Platform",
@@ -323,7 +500,16 @@ export default function Home() {
                 icon: faDatabase,
               },
             ].map((project, index) => (
-              <div key={index} className="glass-card p-6 h-full">
+              <motion.div 
+                key={index} 
+                className="glass-card p-6 h-full"
+                variants={itemVariants}
+                whileHover={{ 
+                  scale: 1.05, 
+                  rotateY: 5,
+                  transition: { type: "spring", stiffness: 300 }
+                }}
+              >
                 <div className="flex items-center gap-3 mb-4">
                   <FontAwesomeIcon
                     icon={project.icon}
@@ -335,29 +521,43 @@ export default function Home() {
                 </div>
                 <p className="text-white/90 mb-6">{project.description}</p>
                 <div className="flex flex-wrap gap-2">
-                  {project.tech.map((tech) => (
-                    <span
+                  {project.tech.map((tech, techIndex) => (
+                    <motion.span
                       key={tech}
                       className="px-3 py-1 bg-white/20 rounded-full text-sm text-white/90"
+                      initial={{ opacity: 0, scale: 0 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ 
+                        duration: 0.3, 
+                        delay: techIndex * 0.1 
+                      }}
+                      viewport={{ once: true }}
+                      whileHover={{ scale: 1.1 }}
                     >
                       {tech}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Footer */}
-      <footer className="py-12 text-center">
+      <motion.footer 
+        className="py-12 text-center"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+      >
         <div className="liquid-glass px-8 py-4 inline-block">
           <p className="text-white/90">
             © 2025 Pinnida Sa. All rights reserved.
           </p>
         </div>
-      </footer>
+      </motion.footer>
     </div>
   );
 }
