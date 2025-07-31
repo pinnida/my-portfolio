@@ -72,11 +72,11 @@ export default function Home() {
   };
 
   const menuItems = [
-    { id: "home", label: "Home", icon: faHome },
-    { id: "about", label: "About", icon: faUser },
-    { id: "skills", label: "Skills", icon: faCogs },
-    { id: "experience", label: "Experience", icon: faBriefcase },
-    { id: "projects", label: "Projects", icon: faProjectDiagram },
+    { id: "home", label: "Home", icon: faHome, color: "from-purple-600 to-blue-600" },
+    { id: "about", label: "About", icon: faUser, color: "from-purple-600 to-blue-600" },
+    { id: "skills", label: "Skills", icon: faCogs, color: "from-purple-600 to-blue-600" },
+    { id: "experience", label: "Experience", icon: faBriefcase, color: "from-purple-600 to-blue-600" },
+    { id: "projects", label: "Projects", icon: faProjectDiagram, color: "from-purple-600 to-blue-600" },
   ];
 
   const downloadResume = () => {
@@ -176,31 +176,33 @@ export default function Home() {
 
           {/* Animated Navigation */}
           <motion.nav
-            className={`fixed ${viewMode === "mobile" ? "top-20 left-1/2" : "top-6 left-1/2"} transform -translate-x-1/2 z-50 liquid-glass px-6 py-3`}
+            className={`fixed ${viewMode === "mobile" ? "top-20 left-1/2" : "top-6 left-1/2"} transform -translate-x-1/2 z-50`}
             initial={{ y: -100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className={`flex ${viewMode === "mobile" ? "space-x-2" : "space-x-6"}`}>
-              {menuItems.map((item, index) => (
-                <motion.a
-                  key={item.id}
-                  href={`#${item.id}`}
-                  className={`${viewMode === "mobile" ? "px-2 py-2" : "px-4 py-2"} rounded-full transition-all duration-300 flex items-center gap-2 ${
-                    activeSection === item.id
-                      ? "bg-white/20 text-white"
-                      : "text-white/70 hover:text-white hover:bg-white/10"
-                  }`}
-                  initial={{ y: -50, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <FontAwesomeIcon icon={item.icon} className="w-4 h-4" />
-                  <span className={`${viewMode === "mobile" ? "hidden" : "hidden md:inline"}`}>{item.label}</span>
-                </motion.a>
-              ))}
+            <div className={`bg-gradient-to-r ${menuItems.find(item => item.id === activeSection)?.color || "from-purple-600 to-blue-600"} backdrop-blur-md border border-white/20 rounded-full px-6 py-3 shadow-lg`}>
+              <div className={`flex ${viewMode === "mobile" ? "space-x-2" : "space-x-6"}`}>
+                {menuItems.map((item, index) => (
+                  <motion.a
+                    key={item.id}
+                    href={`#${item.id}`}
+                    className={`${viewMode === "mobile" ? "px-2 py-2" : "px-4 py-2"} rounded-full transition-all duration-300 flex items-center gap-2 ${
+                      activeSection === item.id
+                        ? "bg-white/30 text-white shadow-md"
+                        : "text-white/80 hover:text-white hover:bg-white/20"
+                    }`}
+                    initial={{ y: -50, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <FontAwesomeIcon icon={item.icon} className="w-4 h-4" />
+                    <span className={`${viewMode === "mobile" ? "hidden" : "hidden md:inline"}`}>{item.label}</span>
+                  </motion.a>
+                ))}
+              </div>
             </div>
           </motion.nav>
 
