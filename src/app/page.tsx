@@ -176,7 +176,7 @@ export default function Home() {
 
           {/* Animated Navigation */}
           <motion.nav
-            className={`fixed ${viewMode === "mobile" ? "top-20 left-1/2" : "top-6 left-1/2"} transform -translate-x-1/2 z-50`}
+            className={`fixed ${viewMode === "mobile" ? "top-5 left-1/2" : "top-6 left-1/2"} transform -translate-x-1/2 z-50`}
             initial={{ y: -100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -355,7 +355,7 @@ export default function Home() {
                 Skills
               </motion.h2>
               <motion.div
-                className={`grid ${viewMode === "mobile" ? "grid-cols-1" : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"} gap-6`}
+                className={`grid ${viewMode === "mobile" ? "grid-cols-2" : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"} gap-6`}
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
@@ -376,14 +376,14 @@ export default function Home() {
                     whileHover={{ scale: 1.05, y: -10 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                    <div className="flex items-center gap-3 mb-4">
+                    <div className="flex items-center gap-3">
                       <Image
                         src={skill.icon}
                         alt={skill.name}
                         width={32}
                         height={32}
                       />
-                      <h3 className="text-xl font-semibold text-white">
+                      <h3 className={`${viewMode === "mobile" ? "text-sm" : "text-lg"} font-semibold text-white`}>
                         {skill.name}
                       </h3>
                     </div>
