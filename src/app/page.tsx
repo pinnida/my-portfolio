@@ -199,7 +199,13 @@ export default function Home() {
                     whileTap={{ scale: 0.95 }}
                   >
                     <FontAwesomeIcon icon={item.icon} className="w-4 h-4" />
-                    <span className={`${viewMode === "mobile" ? "hidden" : "hidden md:inline"}`}>{item.label}</span>
+                    <span className={`${
+                      viewMode === "mobile" 
+                        ? (activeSection === item.id ? "inline" : "hidden") 
+                        : "hidden md:inline"
+                    }`}>
+                      {item.label}
+                    </span>
                   </motion.a>
                 ))}
               </div>
@@ -492,21 +498,21 @@ export default function Home() {
                         className={`glass-card ${viewMode === "mobile" ? "p-4" : "p-6"} flex-1 ml-2`}
                         whileHover={{ scale: 1.02, x: 10 }}
                       >
-                        <div className={`${viewMode === "mobile" ? "flex-col items-start" : "flex items-start justify-between"} mb-2`}>
-                          <h3 className={`${viewMode === "mobile" ? "text-lg" : "text-2xl"} font-bold gradient-text`}>
+                        <div className={`${viewMode === "mobile" ? "mb-2" : "flex items-start justify-between mb-2"}`}>
+                          <h3 className={`${viewMode === "mobile" ? "text-lg mb-2" : "text-2xl"} font-bold gradient-text`}>
                             {job.title}
                           </h3>
                           <span className={`px-2 py-1 rounded-full text-xs font-semibold ${
                             job.permanant 
                               ? 'bg-green-400/20 text-green-300' 
                               : 'bg-orange-400/20 text-orange-300'
-                          } ${viewMode === "mobile" ? "mt-1" : ""}`}>
+                          } ${viewMode === "mobile" ? "mb-2 inline-block" : ""}`}>
                             {job.permanant ? 'Permanent' : 'Contract'}
                           </span>
                         </div>
-                        <h4 className={`text-sm font-semibold text-white mb-2 ${viewMode === "mobile" ? "flex-col" : "flex justify-between"}`}>
-                          <span>{job.company}</span>
-                          <span className={viewMode === "mobile" ? "text-xs" : ""}>
+                        <h4 className={`text-sm font-semibold text-white mb-2 ${viewMode === "mobile" ? "" : "flex justify-between"}`}>
+                          <span className={viewMode === "mobile" ? "block mb-1" : ""}>{job.company}</span>
+                          <span className={`${viewMode === "mobile" ? "text-xs block" : ""}`}>
                             <FontAwesomeIcon icon={faCalendar} className="me-2"/>
                             {job.period}
                           </span>
@@ -623,7 +629,7 @@ export default function Home() {
                     <div className="flex items-center gap-3 mb-4">
                       <FontAwesomeIcon
                         icon={project.icon}
-                        className="w-6 h-6 text-purple-400"
+                        className="w-10 h-10 text-red-800 text-3xl"
                       />
                       <h3 className={`${viewMode === "mobile" ? "text-lg" : "text-xl"} font-semibold text-white`}>
                         {project.title}
