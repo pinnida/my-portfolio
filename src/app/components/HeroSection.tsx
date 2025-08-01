@@ -3,6 +3,7 @@
 import { motion, Variants } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload, faCode } from "@fortawesome/free-solid-svg-icons";
+import Image from "next/image";
 import { ViewMode, SectionId } from "../types";
 import { SOCIAL_LINKS, RESUME_CONFIG, ANIMATION_CONFIG } from "../constants";
 
@@ -13,11 +14,11 @@ interface HeroSectionProps {
   itemVariants: Variants;
 }
 
-export default function HeroSection({ 
-  viewMode, 
-  currentConfig, 
-  containerVariants, 
-  itemVariants 
+export default function HeroSection({
+  viewMode,
+  currentConfig,
+  containerVariants,
+  itemVariants,
 }: HeroSectionProps) {
   const downloadResume = () => {
     const now = new Date();
@@ -49,6 +50,25 @@ export default function HeroSection({
         initial="hidden"
         animate="visible"
       >
+        {/* Profile Image */}
+        <div
+          className={`${
+            viewMode === ViewMode.MOBILE ? "w-32 h-32" : "w-48 h-48"
+          } mx-auto mb-8 relative`}
+        >
+          <div className="w-full h-full rounded-full overflow-hidden aspect-square">
+            <Image
+              src="/img/me-umbrella.jpeg"
+              alt="Pinnida Sangsud"
+              width={viewMode === ViewMode.MOBILE ? 128 : 192}
+              height={viewMode === ViewMode.MOBILE ? 128 : 192}
+              className="w-full h-full object-cover object-center"
+              style={{ aspectRatio: "1/1" }}
+              priority
+            />
+          </div>
+        </div>
+
         <motion.h1
           className={`${currentConfig.breakpoints.text.hero} font-bold mb-6 gradient-text`}
           variants={itemVariants}
@@ -64,12 +84,16 @@ export default function HeroSection({
         </motion.p>
         <motion.div
           onClick={downloadResume}
-          className={`liquid-glass ${viewMode === ViewMode.MOBILE ? "px-6 py-3" : "px-8 py-4"} inline-block cursor-pointer hover:bg-white/20 transition-all duration-300`}
+          className={`liquid-glass ${
+            viewMode === ViewMode.MOBILE ? "px-6 py-3" : "px-8 py-4"
+          } inline-block cursor-pointer hover:bg-white/20 transition-all duration-300`}
           variants={itemVariants}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
         >
-          <p className={`${currentConfig.breakpoints.text.body} text-white/90 flex items-center gap-2`}>
+          <p
+            className={`${currentConfig.breakpoints.text.body} text-white/90 flex items-center gap-2`}
+          >
             <FontAwesomeIcon icon={faDownload} />
             Download Resume
           </p>
