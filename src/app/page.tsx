@@ -91,7 +91,7 @@ export default function Home() {
       .padStart(2, "0")}-${now.getMinutes().toString().padStart(2, "0")}`;
 
     const link = document.createElement("a");
-    link.href = "/Pinnida_Sangsud_Resume_2025.pdf"; // ไฟล์ต้องอยู่ใน public/
+    link.href = "/Pinnida_Sangsud_Resume_2025_noneContact.pdf"; // ไฟล์ต้องอยู่ใน public/
     link.download = `Pinnida_Sangsud_Resume_${timestamp}.pdf`; // กำหนดชื่อไฟล์ที่จะโหลด
     document.body.appendChild(link);
     link.click();
