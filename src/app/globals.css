@@ -108,3 +108,74 @@ html {
   background: var(--accent);
   border-radius: 4px;
 }
+
+/* Glowing Text Effects */
+.glow-text {
+  text-shadow: 
+    0 0 5px rgba(255, 255, 255, 0.5),
+    0 0 10px rgba(147, 51, 234, 0.5),
+    0 0 15px rgba(147, 51, 234, 0.5),
+    0 0 20px rgba(147, 51, 234, 0.5),
+    0 0 35px rgba(147, 51, 234, 0.3),
+    0 0 40px rgba(147, 51, 234, 0.3);
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 
+      0 0 5px rgba(255, 255, 255, 0.5),
+      0 0 10px rgba(147, 51, 234, 0.5),
+      0 0 15px rgba(147, 51, 234, 0.5),
+      0 0 20px rgba(147, 51, 234, 0.5),
+      0 0 35px rgba(147, 51, 234, 0.3),
+      0 0 40px rgba(147, 51, 234, 0.3);
+  }
+  to {
+    text-shadow: 
+      0 0 10px rgba(255, 255, 255, 0.8),
+      0 0 20px rgba(59, 130, 246, 0.8),
+      0 0 30px rgba(59, 130, 246, 0.8),
+      0 0 40px rgba(59, 130, 246, 0.8),
+      0 0 70px rgba(59, 130, 246, 0.6),
+      0 0 80px rgba(59, 130, 246, 0.6);
+  }
+}
+
+.reflective-text {
+  position: relative;
+  background: linear-gradient(45deg, #a855f7, #3b82f6, #ec4899, #8b5cf6);
+  background-size: 400% 400%;
+  background-clip: text;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* SVG Icon Glow Effects */
+.icon-glow {
+  filter: 
+    drop-shadow(0 0 5px rgba(147, 51, 234, 0.5))
+    drop-shadow(0 0 10px rgba(147, 51, 234, 0.5))
+    drop-shadow(0 0 15px rgba(147, 51, 234, 0.3));
+  animation: iconGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes iconGlow {
+  from {
+    filter: 
+      drop-shadow(0 0 5px rgba(147, 51, 234, 0.5))
+      drop-shadow(0 0 10px rgba(147, 51, 234, 0.5))
+      drop-shadow(0 0 15px rgba(147, 51, 234, 0.3));
+  }
+  to {
+    filter: 
+      drop-shadow(0 0 10px rgba(59, 130, 246, 0.8))
+      drop-shadow(0 0 20px rgba(59, 130, 246, 0.8))
+      drop-shadow(0 0 30px rgba(59, 130, 246, 0.6));
+  }
+}

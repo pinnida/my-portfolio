@@ -293,7 +293,7 @@ export default function Home() {
           >
             <div className={`${viewMode === "mobile" ? "max-w-sm" : "max-w-4xl"} mx-auto`}>
               <motion.h2
-                className={`${viewMode === "mobile" ? "text-3xl" : "text-5xl"} font-bold gradient-text mb-12 text-center flex items-center justify-center gap-4`}
+                className={`${viewMode === "mobile" ? "text-3xl" : "text-5xl"} font-bold glow-text reflective-text mb-12 text-center flex items-center justify-center gap-4`}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
@@ -351,7 +351,7 @@ export default function Home() {
           >
             <div className={`${viewMode === "mobile" ? "max-w-sm" : "max-w-6xl"} mx-auto`}>
               <motion.h2
-                className={`${viewMode === "mobile" ? "text-3xl" : "text-5xl"} font-bold gradient-text mb-12 text-center flex items-center justify-center gap-4`}
+                className={`${viewMode === "mobile" ? "text-3xl" : "text-5xl"} font-bold glow-text reflective-text mb-12 text-center flex items-center justify-center gap-4`}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
@@ -410,7 +410,7 @@ export default function Home() {
           >
             <div className={`${viewMode === "mobile" ? "max-w-sm" : "max-w-4xl"} mx-auto`}>
               <motion.h2
-                className={`${viewMode === "mobile" ? "text-3xl" : "text-5xl"} font-bold gradient-text mb-12 text-center flex items-center justify-center gap-4`}
+                className={`${viewMode === "mobile" ? "text-3xl" : "text-5xl"} font-bold glow-text reflective-text mb-12 text-center flex items-center justify-center gap-4`}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
@@ -537,7 +537,7 @@ export default function Home() {
           >
             <div className={`${viewMode === "mobile" ? "max-w-sm" : "max-w-6xl"} mx-auto`}>
               <motion.h2
-                className={`${viewMode === "mobile" ? "text-3xl" : "text-5xl"} font-bold gradient-text mb-12 text-center flex items-center justify-center gap-4`}
+                className={`${viewMode === "mobile" ? "text-3xl" : "text-5xl"} font-bold glow-text reflective-text mb-12 text-center flex items-center justify-center gap-4`}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
@@ -629,7 +629,7 @@ export default function Home() {
                     <div className="flex items-center gap-3 mb-4">
                       <FontAwesomeIcon
                         icon={project.icon}
-                        className="w-10 h-10 text-red-800 text-3xl"
+                        className="w-10 h-10 text-red-600 text-3xl icon-glow"
                       />
                       <h3 className={`${viewMode === "mobile" ? "text-lg" : "text-xl"} font-semibold text-white`}>
                         {project.title}
