@@ -40,7 +40,7 @@ export default function SkillsSection({
           Skills
         </motion.h2>
         <motion.div
-          className={`grid ${viewMode === ViewMode.MOBILE ? "grid-cols-2" : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"} gap-6`}
+          className={`grid ${viewMode === ViewMode.MOBILE ? "gap-2 grid-cols-2" : "gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3"} `}
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -54,7 +54,7 @@ export default function SkillsSection({
               whileHover={{ scale: 1.05, y: -10 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-1">
                 <Image
                   src={skill.icon}
                   alt={skill.name}
