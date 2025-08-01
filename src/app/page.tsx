@@ -31,6 +31,57 @@ export default function Home() {
   const currentConfig = viewMode === ViewMode.MOBILE ? DEVICE_CONFIG.mobile : DEVICE_CONFIG.desktop;
 
   useEffect(() => {
+    // Console introduction message
+    console.clear();
+    console.log(
+      "%c🚀 Welcome to Pinnida's Portfolio! 🚀",
+      "color: #a855f7; font-size: 24px; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);"
+    );
+    console.log(
+      "%c👋 Hi there, fellow developer!",
+      "color: #3b82f6; font-size: 18px; font-weight: bold;"
+    );
+    console.log(
+      "%cI see you're checking out my code! 👀",
+      "color: #ec4899; font-size: 16px;"
+    );
+    console.log(
+      "%c💼 About Me:",
+      "color: #8b5cf6; font-size: 16px; font-weight: bold;"
+    );
+    console.log(
+      "%c   • Front-End Developer with 4+ years experience\n   • Angular specialist & Micro Frontend expert\n   • Passionate about clean code & user experience",
+      "color: #10b981; font-size: 14px;"
+    );
+    console.log(
+      "%c📧 Let's connect:",
+      "color: #f59e0b; font-size: 16px; font-weight: bold;"
+    );
+    console.log(
+      "%c   • GitHub: https://github.com/pinnida\n   • LinkedIn: https://www.linkedin.com/in/pinnida/\n   • Email: pinnida.sa@gmail.com",
+      "color: #6366f1; font-size: 14px;"
+    );
+    console.log(
+      "%c🛠️ This portfolio is built with:",
+      "color: #ef4444; font-size: 16px; font-weight: bold;"
+    );
+    console.log(
+      "%c   • Next.js 15 + TypeScript\n   • Tailwind CSS + Framer Motion\n   • FontAwesome Icons",
+      "color: #059669; font-size: 14px;"
+    );
+    console.log(
+      "%c✨ Fun fact: I love creating liquid glass effects and smooth animations!",
+      "color: #d946ef; font-size: 14px; font-style: italic;"
+    );
+    console.log(
+      "%c💡 Interested in collaboration? Feel free to reach out!",
+      "color: #0ea5e9; font-size: 16px; font-weight: bold;"
+    );
+    console.log(
+      "%c" + "=".repeat(60),
+      "color: #64748b; font-size: 12px;"
+    );
+
     const handleScroll = () => {
       const current = sections.find((section) => {
         const element = document.getElementById(section);

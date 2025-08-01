@@ -89,7 +89,7 @@ export const DEVICE_CONFIG = {
 // Social Links
 export const SOCIAL_LINKS: readonly SocialLink[] = [
   { icon: faGithub, href: "https://github.com/pinnida" },
-  { icon: faLinkedin, href: "https://www.linkedin.com/in/pinnida-s-782a1723a/" },
+  { icon: faLinkedin, href: "https://www.linkedin.com/in/pinnida/" },
   { icon: faLine, href: "https://line.me/ti/p/aV0cNj1VKV" }
 ] as const;
 
