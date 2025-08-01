@@ -20,13 +20,9 @@ export default function ExperienceSection({
   itemVariants 
 }: ExperienceSectionProps) {
   return (
-    <motion.section
+    <section
       id={SectionId.EXPERIENCE}
-      className="min-h-screen flex items-center justify-center px-6 pt-[100px]"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: ANIMATION_CONFIG.duration.medium }}
-      viewport={{ once: true }}
+      className="px-6 py-8"
     >
       <div className={`${viewMode === ViewMode.MOBILE ? "max-w-sm" : "max-w-4xl"} mx-auto`}>
         <motion.h2
@@ -103,6 +99,6 @@ export default function ExperienceSection({
           </div>
         </motion.div>
       </div>
-    </motion.section>
+    </section>
   );
 }

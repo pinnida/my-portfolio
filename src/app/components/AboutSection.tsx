@@ -12,13 +12,9 @@ interface AboutSectionProps {
 
 export default function AboutSection({ viewMode, currentConfig }: AboutSectionProps) {
   return (
-    <motion.section
+    <section
       id={SectionId.ABOUT}
-      className="min-h-screen flex items-center justify-center px-6 pt-[100px]"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: ANIMATION_CONFIG.duration.medium }}
-      viewport={{ once: true }}
+      className="px-6 py-8"
     >
       <div className={`${viewMode === ViewMode.MOBILE ? "max-w-sm" : "max-w-4xl"} mx-auto`}>
         <motion.h2
@@ -31,13 +27,10 @@ export default function AboutSection({ viewMode, currentConfig }: AboutSectionPr
           <FontAwesomeIcon icon={MENU_ITEMS[1].icon} />
           About Me
         </motion.h2>
-        <motion.div
-          className={`glass-card ${viewMode === ViewMode.MOBILE ? "p-6" : "p-8"}`}
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: ANIMATION_CONFIG.duration.medium, delay: ANIMATION_CONFIG.delays.long }}
-          viewport={{ once: true }}
-          whileHover={{ scale: 1.02 }}
+        <div
+          // className={`glass-card ${viewMode === ViewMode.MOBILE ? "p-6" : "p-8"}`}
+          className={`${viewMode === ViewMode.MOBILE ? "p-6" : "p-8"}`}
+
         >
           <motion.p
             className={`${currentConfig.breakpoints.text.body} text-white/90 leading-relaxed mb-6`}
@@ -65,8 +58,8 @@ export default function AboutSection({ viewMode, currentConfig }: AboutSectionPr
             , and CI/CD deployment pipelines. Passionate about creating
             scalable front-end architectures and enhancing user experiences.
           </motion.p>
-        </motion.div>
+        </div>
       </div>
-    </motion.section>
+    </section>
   );
 }

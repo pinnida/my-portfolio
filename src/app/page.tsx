@@ -8,13 +8,13 @@ import {
   faMobileScreen
 } from "@fortawesome/free-solid-svg-icons";
 
-
 // Import types and constants
 import { ViewMode, SectionId } from "./types";
 import { ANIMATION_CONFIG, DEVICE_CONFIG } from "./constants";
 
 // Import components
 import Navigation from "./components/Navigation";
+import WindowCard from "./components/WindowCard";
 import HeroSection from "./components/HeroSection";
 import AboutSection from "./components/AboutSection";
 import SkillsSection from "./components/SkillsSection";
@@ -217,31 +217,39 @@ export default function Home() {
             itemVariants={itemVariants} 
           />
 
-          <AboutSection 
-            viewMode={viewMode} 
-            currentConfig={currentConfig} 
-          />
+          <WindowCard title="About Me" viewMode={viewMode}>
+            <AboutSection 
+              viewMode={viewMode} 
+              currentConfig={currentConfig} 
+            />
+          </WindowCard>
 
-          <SkillsSection 
-            viewMode={viewMode} 
-            currentConfig={currentConfig} 
-            containerVariants={containerVariants} 
-            itemVariants={itemVariants} 
-          />
+          {/* <WindowCard title="Skills & Technologies" viewMode={viewMode}> */}
+            <SkillsSection 
+              viewMode={viewMode} 
+              currentConfig={currentConfig} 
+              containerVariants={containerVariants} 
+              itemVariants={itemVariants} 
+            />
+          {/* </WindowCard> */}
 
-          <ExperienceSection 
-            viewMode={viewMode} 
-            currentConfig={currentConfig} 
-            containerVariants={containerVariants} 
-            itemVariants={itemVariants} 
-          />
+          {/* <WindowCard title="Work Experience" viewMode={viewMode}> */}
+            <ExperienceSection 
+              viewMode={viewMode} 
+              currentConfig={currentConfig} 
+              containerVariants={containerVariants} 
+              itemVariants={itemVariants} 
+            />
+          {/* </WindowCard> */}
 
-          <ProjectsSection 
-            viewMode={viewMode} 
-            currentConfig={currentConfig} 
-            containerVariants={containerVariants} 
-            itemVariants={itemVariants} 
-          />
+          {/* <WindowCard title="Projects Portfolio" viewMode={viewMode}> */}
+            <ProjectsSection 
+              viewMode={viewMode} 
+              currentConfig={currentConfig} 
+              containerVariants={containerVariants} 
+              itemVariants={itemVariants} 
+            />
+          {/* </WindowCard> */}
 
           {/* Footer */}
           <motion.footer
