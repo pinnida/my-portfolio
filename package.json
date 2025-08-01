@@ -5,10 +5,9 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "export": "next build && next export",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "npm run export && firebase deploy"
+    "deploy": "next build && firebase deploy"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^7.0.0",

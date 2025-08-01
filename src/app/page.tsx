@@ -81,6 +81,10 @@ export default function Home() {
       "%c" + "=".repeat(60),
       "color: #64748b; font-size: 12px;"
     );
+    console.log(
+      "%c" + "=".repeat(60),
+      "color: #64748b; font-size: 12px;"
+    );
 
     const handleScroll = () => {
       const current = sections.find((section) => {
