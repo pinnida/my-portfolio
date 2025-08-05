@@ -161,11 +161,14 @@ export default function Home() {
 
       {/* Mobile View Wrapper */}
       <div className={`${viewMode === ViewMode.MOBILE ? "flex justify-center bg-gray-800" : ""} min-h-screen`}>
-        <div className={`${viewMode === ViewMode.MOBILE ? `w-[${DEVICE_CONFIG.mobile.width}px] bg-gradient-to-br from-purple-600 to-blue-700` : "w-full"} min-h-screen relative`}>
+        <div className={`${viewMode === ViewMode.MOBILE ? `w-[${DEVICE_CONFIG.mobile.width}px] bg-gradient-to-br from-purple-500 to-emerald-600` : "w-full"} min-h-screen relative`}>
           {/* Animated Floating Background Elements */}
           <motion.div
-            className={`liquid-blob ${viewMode === ViewMode.MOBILE ? "w-32 h-32" : "w-72 h-72"} bg-blue-400 top-20 left-20`}
-            style={{ y }}
+            className={`liquid-blob ${viewMode === ViewMode.MOBILE ? "w-32 h-32" : "w-72 h-72"} top-20 left-20`}
+            style={{ 
+              y,
+              background: 'linear-gradient(45deg, rgb(10, 197, 178), rgb(234, 255, 253))'
+            }}
             animate={{
               x: [0, viewMode === ViewMode.MOBILE ? 30 : 100, 0],
               rotate: [0, 180, 360],
@@ -177,8 +180,11 @@ export default function Home() {
             }}
           ></motion.div>
           <motion.div
-            className={`liquid-blob ${viewMode === ViewMode.MOBILE ? "w-40 h-40" : "w-96 h-96"} bg-purple-400 top-1/2 right-20`}
-            style={{ y: useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]) }}
+            className={`liquid-blob ${viewMode === ViewMode.MOBILE ? "w-40 h-40" : "w-96 h-96"} top-1/2 right-20`}
+            style={{ 
+              y: useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]),
+              background: 'linear-gradient(45deg, rgb(10, 197, 178), rgb(0, 137, 186))'
+            }}
             animate={{
               x: [0, viewMode === ViewMode.MOBILE ? -20 : -50, 0],
               rotate: [0, -180, -360],
@@ -190,7 +196,10 @@ export default function Home() {
             }}
           ></motion.div>
           <motion.div
-            className={`liquid-blob ${viewMode === ViewMode.MOBILE ? "w-28 h-28" : "w-64 h-64"} bg-pink-400 bottom-20 left-1/3`}
+            className={`liquid-blob ${viewMode === ViewMode.MOBILE ? "w-28 h-28" : "w-64 h-64"} bottom-20 left-1/3`}
+            style={{ 
+              background: 'linear-gradient(45deg, #008E9B, #008F7A)'
+            }}
             animate={{
               y: [0, viewMode === ViewMode.MOBILE ? -40 : -80, 0],
               x: [0, viewMode === ViewMode.MOBILE ? 20 : 50, 0],

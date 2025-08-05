@@ -69,12 +69,12 @@ export default function HeroSection({
           </div>
         </div>
 
-        <motion.h1
-          className={`${currentConfig.breakpoints.text.hero} font-bold mb-6 gradient-text`}
+        <motion.p
+          className={`${currentConfig.breakpoints.text.hero} font-bold mb-8 gradient-text`}
           variants={itemVariants}
         >
           Pinnida Sangsud
-        </motion.h1>
+        </motion.p>
         <motion.p
           className={`${currentConfig.breakpoints.text.subtitle} text-white/80 mb-8 glow-text reflective-text`}
           variants={itemVariants}

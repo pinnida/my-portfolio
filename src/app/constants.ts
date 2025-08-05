@@ -26,7 +26,7 @@ import {
 
 // Color Configuration
 export const COLORS: Colors = {
-  gradient: "from-purple-600 to-blue-600",
+  gradient: "from-purple-500 to-emerald-600",
   glass: {
     background: "rgba(255, 255, 255, 0.05)",
     border: "rgba(255, 255, 255, 0.1)"
@@ -72,7 +72,7 @@ export const DEVICE_CONFIG = {
   desktop: {
     breakpoints: {
       text: {
-        hero: "text-6xl md:text-8xl",
+        hero: "text-6xl md:text-6xl",
         section: "text-5xl",
         subtitle: "text-2xl md:text-3xl",
         body: "text-lg"
